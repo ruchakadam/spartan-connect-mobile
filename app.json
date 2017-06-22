@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "Spartan Connect (Prototype)",
+    "description": "Prototype playground for an upcoming Spartan app",
+    "slug": "SpartanConnectProto",
+    "primaryColor": "#a6192e",
+    "icon": "./favicon.png",
+    "loading": {
+      "icon": "./favicon.png",
+      "hideExponentText": false
+},
+    "sdkVersion": "17.0.0"
+  }
+}
