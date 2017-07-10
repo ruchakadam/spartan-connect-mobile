@@ -73,7 +73,7 @@ export class IndexScreen extends Component {
       <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh.bind(this)}/>} style={AppStyles.announcementsView}>
         <StatusBar hidden />
         <Button onPress={() => navigate('Announcement', {id: 1})} title="Open Sample Announcement" />
-        <BoxAlert title="DEVELOPER'S NOTICE" description="This is not meant to be used as the final app or even the development app during bootcamp. This simply serves as a prototype for developers to learn from."/>
+        <BoxAlert title="DEVELOPERS NOTICE" description="This is an alpha version."/>
         <FlatList data={this.state.announcements} renderItem={({item}) => <Announcement id={item.value} returnFunction={this._onRedirect.bind(this)} />}/>
       </ScrollView>
     );
