@@ -30,20 +30,8 @@ var styles = StyleSheet.create({
   spacedLeft: {
     paddingLeft: 10,
   },
-  drawerLock: {
-    height: 200,
-    paddingTop: 50,
-  },
 });
 
-
-class DrawerFilterSwitches extends Component
-  render: function() {
-
-    return (
-
-  },
-}
 
 
 export class IndexScreen extends Component {
@@ -125,13 +113,7 @@ export class IndexScreen extends Component {
 
     const navigationView = (
       <View style={[styles.container]}>
-        <Text>Hello there!</Text>
-        <DrawerFilterSwitches
-
-        />
-        <TouchableHighlight onPress={() => this.drawer.closeDrawer()}>
-          <Text>Close drawer</Text>
-        </TouchableHighlight>
+        <Text>Choose Visable Announcements</Text>
       </View>
     );
 
@@ -140,7 +122,7 @@ export class IndexScreen extends Component {
 
             <DrawerLayout
               drawerWidth={300}
-              drawerBackgroundColor="Choose Visable Announcements"
+              drawerBackgroundColor="deepskyblue"
               renderNavigationView={() => navigationView}>
 
               <StatusBar hidden />
