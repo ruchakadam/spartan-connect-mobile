@@ -1,11 +1,49 @@
 import React, { Component } from 'react';
-import { Alert, Button, FlatList, RefreshControl, ScrollView, StatusBar, StyleSheet, Text, View, WebView } from 'react-native';
+import { Alert, Button, FlatList, RefreshControl, ScrollView, StatusBar, StyleSheet, Text, View, WebView, TouchableHighlight, I18nManager, Switch, TextInput} from 'react-native';
 import HTMLView from 'react-native-htmlview';
 
 import { AppStyles, AppTextStyles } from './Styles';
 import { BoxAlert, Announcement } from './UI';
-import Drawer from 'react-native-drawer-menu';
+import DrawerLayout from 'react-native-drawer-layout';
 import {Easing} from 'react-native';
+
+
+
+var styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  inputField: {
+    backgroundColor: '#F2F2F2',
+    height: 40,
+  },
+  split: {
+    flexDirection: 'row',
+  },
+  spacedLeft: {
+    paddingLeft: 10,
+  },
+  drawerLock: {
+    height: 200,
+    paddingTop: 50,
+  },
+});
+
+
+class DrawerFilterSwitches extends Component
+  render: function() {
+
+    return (
+
+  },
+}
 
 
 export class IndexScreen extends Component {
@@ -71,54 +109,48 @@ export class IndexScreen extends Component {
     }
   }
 
-  render() {
 
-    // Drawer Setup
-    var drawerContent = (<View style={styles.drawerContent}>
-    <View style={styles.leftTop}/>
-    <View style={styles.leftBottom}>
-      <View><Text>Drawer Content</Text></View>
-    </View>
-    </View>);
-    // customize drawer's style (Optional)
-    var customStyles = {
-      drawer: {
-        shadowColor: '#000',
-        shadowOpacity: 0.4,
-        shadowRadius: 10
-      },
-    mask: {}, // style of mask if it is enabled
-    main: {} // style of main board
+  // Drawer
+  getInitialState() {
+    return {
+      drawerLockMode: 'unlocked',
     };
+  }
 
+  render() {
     const { navigate } = this.props.navigation;
-    return (
-      <View>
-        <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh.bind(this)}/>} style={AppStyles.announcementsView}>
-          <StatusBar hidden />
-          <Button onPress={() => navigate('Announcement', {id: 1})} title="Open Sample Announcement" />
-          <BoxAlert title="DEVELOPER'S NOTICE" description="This is not meant to be used as the final app or even the development app during bootcamp. This simply serves as a prototype for developers to learn from."/>
-          <FlatList data={this.state.announcements} renderItem={({item}) => <Announcement id={item.value} returnFunction={this._onRedirect.bind(this)} />}/>
-        </ScrollView>
 
-        // Drawer Implementation
-        <Drawer
-          style={styles.container}
-          drawerWidth={300}
-          drawerContent={drawerContent}
-          type={Drawer.types.Overlay}
-          customStyles={{drawer: styles.drawer}}
-          drawerPosition={Drawer.positions.Right}
-          onDrawerOpen={() => {console.log('Drawer is opened');}}
-          onDrawerClose={() => {console.log('Drawer is closed')}}
-          easingFunc={Easing.ease}
-         >
-          <View style={styles.content}>
-            <Text>{Object.values(Drawer.positions).join(' ')}</Text>
-            <Text>{Object.values(Drawer.types).join(' ')}</Text>
-          </View>
-        </Drawer>
+    // Drawer
+    const {drawerLockMode} = this.state;
+
+    const navigationView = (
+      <View style={[styles.container]}>
+        <Text>Hello there!</Text>
+        <DrawerFilterSwitches
+
+        />
+        <TouchableHighlight onPress={() => this.drawer.closeDrawer()}>
+          <Text>Close drawer</Text>
+        </TouchableHighlight>
       </View>
+    );
+
+    return (
+        <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh.bind(this)}/>} style={AppStyles.announcementsView}>
+
+            <DrawerLayout
+              drawerWidth={300}
+              drawerBackgroundColor="Choose Visable Announcements"
+              renderNavigationView={() => navigationView}>
+
+              <StatusBar hidden />
+              <Button onPress={() => navigate('Announcement', {id: 1})} title="Open Sample Announcement" />
+              <BoxAlert title="DEVELOPER'S NOTICE" description="This is not meant to be used as the final app or even the development app during bootcamp. This simply serves as a prototype for developers to learn from."/>
+              <FlatList data={this.state.announcements} renderItem={({item}) => <Announcement id={item.value} returnFunction={this._onRedirect.bind(this)} />}/>
+
+          </DrawerLayout>
+
+        </ScrollView>
 
     );
   }
