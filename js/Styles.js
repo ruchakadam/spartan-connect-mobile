@@ -1,15 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 export const AppStyles = StyleSheet.create({
-  /*backCover:{
-    position: 'absolute',
-    marginTop: 20,
-    top:0,
-    bottom:0,
-    left:0,
-    right:0,
-    backgroundColor: "#ffffff",
-  }*/
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
